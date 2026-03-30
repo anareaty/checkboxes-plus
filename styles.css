@@ -1,8 +1,76 @@
-/*
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+body:has(> .menu.checkbox-menu) > .menu.editor-menu {
+    display: none;
+}
 
-If your plugin does not need CSS, delete this file.
+.menu.checkbox-menu {
+    z-index: 99
+}
 
-*/
+body {
+    --table-column-min-width: 34px
+}
+
+input[type=checkbox].table-checkbox {
+    margin: 0 !important;
+    transform: translate(0px, calc(var(--checkbox-size) / 2 - 0.5em));
+}
+
+
+input[type=checkbox]:is([data-task="-"], [data-task="~"], [data-task=">"], [data-task="/"]),
+li:is([data-task="-"], [data-task="~"], [data-task=">"], [data-task="/"]) > input[type=checkbox] {
+    background-color: transparent;
+    border-color: transparent;
+    --checkbox-color-hover: transparent;
+}
+
+input[type=checkbox].task-list-item-checkbox:hover {
+    opacity: 0.7;
+}
+
+input[type=checkbox]:is([data-task="-"], [data-task="~"], [data-task=">"], [data-task="/"]):checked::after,
+li:is([data-task="-"], [data-task="~"], [data-task=">"], [data-task="/"]) > input[type=checkbox]:checked::after {
+	-webkit-mask-position: 50% 50%;
+    -webkit-mask-size: 100%;
+    background-color: var(--checkbox-color);
+}
+
+
+input[type=checkbox][data-task="~"]:checked::after,
+li[data-task="~"] > input[type=checkbox]:checked::after {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='1 1 22 22' fill='none' stroke='currentColor' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-circle-x-icon lucide-circle-x'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='m15 9-6 6'/%3E%3Cpath d='m9 9 6 6'/%3E%3C/svg%3E");
+}
+
+input[type=checkbox][data-task="-"]:checked::after,
+li[data-task="-"] > input[type=checkbox]:checked::after {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyLjI1IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLW1pbnVzLWljb24gbHVjaWRlLW1pbnVzIj48cGF0aCBkPSJNNSAxMmgxNCIvPjwvc3ZnPg==");
+}
+
+input[type=checkbox][data-task="/"]:checked::after,
+li[data-task="/"] > input[type=checkbox]:checked::after {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' transform='rotate(180 0 0)' viewBox='2 2 20 20' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='icon icon-tabler icons-tabler-outline icon-tabler-percentage-50'%3E%3Cpath stroke='none' d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M12 21a9 9 0 0 0 0 -18m0 0v18' fill='currentColor' stroke='none' /%3E%3Cpath d='M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0' /%3E%3C/svg%3E");
+}
+
+input[type=checkbox][data-task=">"]:checked::after,
+li[data-task=">"] > input[type=checkbox]:checked::after {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='1 1 22 22' fill='none' stroke='currentColor' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-circle-chevron-right-icon lucide-circle-chevron-right'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='m10 8 4 4-4 4'/%3E%3C/svg%3E");
+}
+
+
+.cp-number-widget {
+    padding: 0 4px;
+    border-radius: 4px;
+    cursor: default;
+}
+
+.cp-number-widget:hover {
+    background-color: var(--nav-item-background-active);
+}
+
+.cp-number-widget-colored {
+    background-color: rgba(var(--color-red-rgb), 0.2);
+}
+
+.cp-number-widget.cp-number-widget-colored:hover {
+    background-color: rgba(var(--color-red-rgb), 0.3);
+}
