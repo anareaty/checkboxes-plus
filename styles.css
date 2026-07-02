@@ -11,6 +11,10 @@ body {
     --table-column-min-width: 34px
 }
 
+.pre-table-line {
+    font-size: 0;
+  }
+
 input[type=checkbox].table-checkbox {
     margin: 0 !important;
     transform: translate(0px, calc(var(--checkbox-size) / 2 - 0.5em));
