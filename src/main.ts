@@ -21,7 +21,7 @@ export default class CustomCheckboxes extends Plugin {
 
 		this.addCommand({
 			id: 'insert-checkbox',
-			name: 'Вставить флажок',
+			name: 'Insert checkbox',
 			editorCallback: (editor: Editor, view: MarkdownView) => {
 				editor.replaceSelection("- [ ] ")
 			}
@@ -32,7 +32,7 @@ export default class CustomCheckboxes extends Plugin {
 		this.app.workspace.on("editor-menu", (menu, editor, view) => {
 			menu.addItem((item) => {
 				item
-				.setTitle('Вставить флажок')
+				.setTitle('Insert checkbox')
 				.setSection("checkboxes-plus")
 				.setIcon('check-square')
 				.onClick(async () => {

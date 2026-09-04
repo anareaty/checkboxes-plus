@@ -3,9 +3,8 @@
 	"name": "Checkboxes Plus",
 	"version": "1.0.1",
 	"minAppVersion": "0.15.0",
-	"description": "Shows checkboxes in tables and adds alternative checkboxes with selection menu.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
+	"description": "Show interactive checkboxes inside tables and switch between alternative checkbox states from a selection menu.",
+	"author": "anareaty",
+	"authorUrl": "https://github.com/anareaty",
 	"isDesktopOnly": false
 }

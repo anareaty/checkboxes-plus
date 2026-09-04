@@ -92,7 +92,7 @@ export const createCheckboxMenu = (e: PointerEvent, target: HTMLElement, plugin:
     checkboxMenu.dom?.classList.add("checkbox-menu")
 
     checkboxMenu.addItem(item => item
-      .setTitle("Задача")
+      .setTitle("Task")
       .setIcon("circle")
       .onClick(() => {
         checkboxUpdateFunc(target, " ", plugin, type)
@@ -100,7 +100,7 @@ export const createCheckboxMenu = (e: PointerEvent, target: HTMLElement, plugin:
     )
     
     checkboxMenu.addItem(item => item
-      .setTitle("Выполнено")
+      .setTitle("Done")
       .setIcon("check-circle-2")
       .onClick(() => {
         checkboxUpdateFunc(target, "x", plugin, type)
@@ -108,7 +108,7 @@ export const createCheckboxMenu = (e: PointerEvent, target: HTMLElement, plugin:
     )
     
     checkboxMenu.addItem(item => item
-      .setTitle("Начато")
+      .setTitle("In progress")
       .setIcon("circle-slash")
       .onClick(() => {
         checkboxUpdateFunc(target, "/", plugin, type)
@@ -116,7 +116,7 @@ export const createCheckboxMenu = (e: PointerEvent, target: HTMLElement, plugin:
     )
 
     checkboxMenu.addItem(item => item
-      .setTitle("Перенесено")
+      .setTitle("Forwarded")
       .setIcon("chevron-right-circle")
       .onClick(() => {
         checkboxUpdateFunc(target, ">", plugin, type)
@@ -124,7 +124,7 @@ export const createCheckboxMenu = (e: PointerEvent, target: HTMLElement, plugin:
     )
     
     checkboxMenu.addItem(item => item
-      .setTitle("Отменено")
+      .setTitle("Cancelled")
       .setIcon("minus")
       .onClick(() => {
         checkboxUpdateFunc(target, "-", plugin, type)
@@ -132,7 +132,7 @@ export const createCheckboxMenu = (e: PointerEvent, target: HTMLElement, plugin:
     )
     
     checkboxMenu.addItem(item => item
-      .setTitle("Провалено")
+      .setTitle("Failed")
       .setIcon("x-circle")
       .onClick(() => {
         checkboxUpdateFunc(target, "~", plugin, type)
