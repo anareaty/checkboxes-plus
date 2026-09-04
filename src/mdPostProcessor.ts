@@ -1,14 +1,15 @@
-import CustomCheckboxes from "src/main";
+import type { MarkdownPostProcessorContext } from "obsidian";
+import type CustomCheckboxes from "./main";
 import { createCheckboxMenu, tableCheckboxClickEvent, updateNumberWidget } from "./events";
 
 
 const renderTableCheckbox = (text: string, element: HTMLElement, plugin: CustomCheckboxes) => {
 
-    let symbols = [" ", "x", ">", "/", "-", "~"]
+    const symbols = [" ", "x", ">", "/", "-", "~"]
 
-    for (let symbol of symbols) {
+    for (const symbol of symbols) {
         if (text.startsWith("- [" + symbol + "]")) {
-            let checkbox = document.createElement("input")
+            const checkbox = document.createElement("input")
             checkbox.type = "checkbox"
             checkbox.classList.add("task-list-item-checkbox")
             checkbox.classList.add("table-checkbox")
@@ -38,7 +39,7 @@ const renderTableCheckbox = (text: string, element: HTMLElement, plugin: CustomC
             checkbox.oncontextmenu = (e) => {
                 e.preventDefault()
                 e.stopPropagation()
-                let cmTable = checkbox.closest(".cm-table-widget")
+                const cmTable = checkbox.closest(".cm-table-widget")
                 if (cmTable) {
                     createCheckboxMenu(e as PointerEvent, checkbox, plugin, "table")
                 }
@@ -50,17 +51,17 @@ const renderTableCheckbox = (text: string, element: HTMLElement, plugin: CustomC
 }
 
 export const registerTableCheckboxPostProcessor = (plugin: CustomCheckboxes) => {
-    plugin.registerMarkdownPostProcessor((element, context) => {
+    plugin.registerMarkdownPostProcessor((element: HTMLElement, context: MarkdownPostProcessorContext) => {
 
       if (element.classList.contains("table-cell-wrapper")) {
-        let text = element.innerText
+        const text = element.innerText
         renderTableCheckbox(text, element, plugin)
 
       } else {
-        let tableCells = element.findAll("td")
+        const tableCells = element.findAll("td")
 
-        for (let td of tableCells) {
-          let text = td.innerText
+        for (const td of tableCells) {
+          const text = td.innerText
           renderTableCheckbox(text, td, plugin)
         }
       }
@@ -85,8 +86,8 @@ const renderNumberWidget = (text: string, element: HTMLElement, plugin: CustomCh
 
 
     if (numberMatch) {
-        let numString = numberMatch[2]
-        let numberWidget = document.createElement("span")
+        const numString = numberMatch[2]
+        const numberWidget = document.createElement("span")
         numberWidget.classList.add("cp-number-widget")
 
         if (colored) {
@@ -162,17 +163,17 @@ const renderNumberWidget = (text: string, element: HTMLElement, plugin: CustomCh
 
 
 export const registerNumberWidgetPostProcessor = (plugin: CustomCheckboxes) => {
-    plugin.registerMarkdownPostProcessor((element, context) => {
+    plugin.registerMarkdownPostProcessor((element: HTMLElement, context: MarkdownPostProcessorContext) => {
 
       if (element.classList.contains("table-cell-wrapper")) {
-        let text = element.innerText
+        const text = element.innerText
         renderNumberWidget(text, element, plugin)
 
       } else {
-        let tableCells = element.findAll("td")
+        const tableCells = element.findAll("td")
 
-        for (let td of tableCells) {
-          let text = td.innerText
+        for (const td of tableCells) {
+          const text = td.innerText
           renderNumberWidget(text, td, plugin)
         }
       }

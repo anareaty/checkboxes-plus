@@ -3,39 +3,39 @@ import CustomCheckboxes from "./main";
 
 
 const updateTableCheckbox = (target: HTMLElement, newSymbol: string, plugin: CustomCheckboxes) => {
-    let symbol = target.getAttribute("data-task")
+    const symbol = target.getAttribute("data-task")
     let cell = target.closest("td")
     if(!cell) {
         cell = target.closest("th")
         if (!cell) return
     }
-    let row = target.closest("tr")
+    const row = target.closest("tr")
     if(!row) return
-    let body = target.closest("tbody")
+    const body = target.closest("tbody")
     if (!body) {
-        let head = target.closest("thead")
+        const head = target.closest("thead")
         if (!head) return
     }
     
-    let table = target.closest(".cm-table-widget")
-    let prevLine = table?.previousElementSibling
+    const table = target.closest(".cm-table-widget")
+    const prevLine = table?.previousElementSibling
     
     if (prevLine instanceof HTMLElement) {
-        let tableStart = prevLine.getAttribute("data-table-start") || "0"
+        const tableStart = prevLine.getAttribute("data-table-start") || "0"
 
         let rowIndex = -2
         if (body) {
         rowIndex = Array.from(body.children).indexOf(row)
         }
         
-        let cellIndex = Array.from(row.children).indexOf(cell)
-        let editor = plugin.app.workspace.activeEditor?.editor
+        const cellIndex = Array.from(row.children).indexOf(cell)
+        const editor = plugin.app.workspace.activeEditor?.editor
         if (!editor) return
-        let tableStartPos = editor.offsetToPos(Number(tableStart))
-        let rowStartLine = tableStartPos.line + 2 + rowIndex
+        const tableStartPos = editor.offsetToPos(Number(tableStart))
+        const rowStartLine = tableStartPos.line + 2 + rowIndex
         let rowLineText = editor.getLine(rowStartLine)
-        let cells = rowLineText.split(" | ")
-        let cellText = cells[cellIndex]
+        const cells = rowLineText.split(" | ")
+        const cellText = cells[cellIndex]
 
         cells[cellIndex] = cellText.replace("- [" + symbol + "]", "- [" + newSymbol + "]")
 
@@ -48,14 +48,14 @@ const updateTableCheckbox = (target: HTMLElement, newSymbol: string, plugin: Cus
 
 
 const updateListCheckbox = (target: HTMLElement, newSymbol: string, plugin: CustomCheckboxes) => {
-    let wrapper = target.closest(".custom-checkbox")
+    const wrapper = target.closest(".custom-checkbox")
     
     if(!wrapper) return
-    let editor = plugin.app.workspace.activeEditor?.editor
+    const editor = plugin.app.workspace.activeEditor?.editor
     if (!editor) return
-    let checkboxStart = wrapper.getAttribute("data-checkbox-start")
-    let checkboxStartPos = editor.offsetToPos(Number(checkboxStart))
-    let symbol = target.getAttribute("data-task")
+    const checkboxStart = wrapper.getAttribute("data-checkbox-start")
+    const checkboxStartPos = editor.offsetToPos(Number(checkboxStart))
+    const symbol = target.getAttribute("data-task")
     let checkboxLineText = editor.getLine(checkboxStartPos.line)
     checkboxLineText = checkboxLineText.replace("- [" + symbol + "]", "- [" + newSymbol + "]")
     editor.setLine(checkboxStartPos.line , checkboxLineText)
@@ -64,7 +64,7 @@ const updateListCheckbox = (target: HTMLElement, newSymbol: string, plugin: Cust
 
 
 export const tableCheckboxClickEvent = (target: HTMLElement, plugin: CustomCheckboxes) => {
-    let symbol = target.getAttribute("data-task")
+    const symbol = target.getAttribute("data-task")
     if (symbol == " ") {
         updateTableCheckbox(target, "x", plugin)
     } else {
@@ -87,7 +87,7 @@ const checkboxUpdateFunc = (target: HTMLElement, newSymbol: string, plugin: Cust
 
 export const createCheckboxMenu = (e: PointerEvent, target: HTMLElement, plugin: CustomCheckboxes, type: string) => {
 
-    let checkboxMenu = new Menu()
+    const checkboxMenu = new Menu()
     //@ts-ignore
     checkboxMenu.dom?.classList.add("checkbox-menu")
 
@@ -145,9 +145,9 @@ export const createCheckboxMenu = (e: PointerEvent, target: HTMLElement, plugin:
 
 
 const contextMenuEvent = (e: PointerEvent, plugin: CustomCheckboxes) => {
-  let target = e.target;
+  const target = e.target;
   if (target instanceof HTMLElement && target.classList.contains("task-list-item-checkbox")) {
-    let cmLine = target.closest(".HyperMD-list-line");
+    const cmLine = target.closest(".HyperMD-list-line");
     if (cmLine) {
       createCheckboxMenu(e, target, plugin, "list");
     }
@@ -187,33 +187,33 @@ export const updateNumberWidget = (numString: string, colored: boolean, target: 
         cell = target.closest("th")
         if (!cell) return
     }
-    let row = target.closest("tr")
+    const row = target.closest("tr")
     if(!row) return
-    let body = target.closest("tbody")
+    const body = target.closest("tbody")
     if (!body) {
-        let head = target.closest("thead")
+        const head = target.closest("thead")
         if (!head) return
     }
     
-    let table = target.closest(".cm-table-widget")
-    let prevLine = table?.previousElementSibling
+    const table = target.closest(".cm-table-widget")
+    const prevLine = table?.previousElementSibling
     
     if (prevLine instanceof HTMLElement) {
-        let tableStart = prevLine.getAttribute("data-table-start") || "0"
+        const tableStart = prevLine.getAttribute("data-table-start") || "0"
 
         let rowIndex = -2
         if (body) {
         rowIndex = Array.from(body.children).indexOf(row)
         }
         
-        let cellIndex = Array.from(row.children).indexOf(cell)
-        let editor = plugin.app.workspace.activeEditor?.editor
+        const cellIndex = Array.from(row.children).indexOf(cell)
+        const editor = plugin.app.workspace.activeEditor?.editor
         if (!editor) return
-        let tableStartPos = editor.offsetToPos(Number(tableStart))
-        let rowStartLine = tableStartPos.line + 2 + rowIndex
+        const tableStartPos = editor.offsetToPos(Number(tableStart))
+        const rowStartLine = tableStartPos.line + 2 + rowIndex
         let rowLineText = editor.getLine(rowStartLine)
-        let cells = rowLineText.split(" | ")
-        let cellText = cells[cellIndex]
+        const cells = rowLineText.split(" | ")
+        const cellText = cells[cellIndex]
 
         let oldText = "{" + numString + "}"
         let newText = "{/" + numString + "/}"

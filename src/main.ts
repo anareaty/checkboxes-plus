@@ -1,4 +1,4 @@
-import { Editor, MarkdownView, Plugin } from 'obsidian';
+import { Editor, Plugin } from 'obsidian';
 import { registerCheckboxExtension } from './cmExtension';
 import { registerNumberWidgetPostProcessor, registerTableCheckboxPostProcessor } from './mdPostProcessor';
 import { registerCheckboxEvents } from './events';
@@ -22,7 +22,7 @@ export default class CustomCheckboxes extends Plugin {
 		this.addCommand({
 			id: 'insert-checkbox',
 			name: 'Вставить флажок',
-			editorCallback: (editor: Editor, view: MarkdownView) => {
+			editorCallback: (editor: Editor) => {
 				editor.replaceSelection("- [ ] ")
 			}
 		});

@@ -11,7 +11,7 @@ ViewPlugin,
 ViewUpdate
 } from '@codemirror/view';
 
-import CustomCheckboxes from 'src/main';
+import type CustomCheckboxes from './main';
 
 
 export const registerCheckboxExtension = (plugin: CustomCheckboxes) => {
@@ -36,11 +36,11 @@ export const registerCheckboxExtension = (plugin: CustomCheckboxes) => {
 
         buildDecorations(view: EditorView): DecorationSet {
             const builder = new RangeSetBuilder<Decoration>();
-            for (let { from, to } of view.visibleRanges) {
+            for (const { from, to } of view.visibleRanges) {
                 syntaxTree(view.state).iterate({
                     from,
                     to,
-                    enter(node: any) {
+                    enter(node: { type: { name: string }; from: number; to: number }) {
 
                         // Mark the line before table
                         if (node.type.name.includes("HyperMD-table-row-0")) {
@@ -50,7 +50,7 @@ export const registerCheckboxExtension = (plugin: CustomCheckboxes) => {
                             Decoration.line({
                                 attributes: {
                                 class: "pre-table-line",
-                                "data-table-start": node.from
+                                "data-table-start": String(node.from)
                                 }
                             })
                             )
@@ -60,9 +60,9 @@ export const registerCheckboxExtension = (plugin: CustomCheckboxes) => {
                         // Wrap checkboxes
                         if (node.type.name.includes("formatting_formatting-task_property") || 
                         node.type.name.includes("formatting_formatting-task_meta")) {
-                            let deco = Decoration.mark({
+                            const deco = Decoration.mark({
                             attributes: {
-                                "data-checkbox-start": node.from
+                                "data-checkbox-start": String(node.from)
                             },
                             class: "custom-checkbox"
                             });
